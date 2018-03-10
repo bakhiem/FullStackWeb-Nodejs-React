@@ -1,0 +1,29 @@
+body,html{
+	padding: 0;
+	margin:0;
+}
+*{text-align: center;}
+.header {
+    background-color: #0000ff;
+}
+
+.nav {
+    background-color: #800080;
+}
+
+.main {
+    background-color: #ffd700;
+    float:  left;
+    width: 70%;
+}
+
+.aside {
+    background-color: #808080;
+    float: left;
+    width:  30%;
+height: 584px;}
+
+.footer {
+    background-color: #00ffff;
+    float: left;
+}

@@ -1,48 +1,125 @@
+const express = require('express');
+const path = require('path');
+const handlebar = require('express-handlebars');
+const bodyParser = require('body-parser');
+const fileController = require('./fileController');
 
-// const fs = require('fs');
-// // fs.readFile
+let app = express();
+app.engine('handlebars', handlebar({
+    defaultLayout: 'main'
+}));
+app.set('view engine', 'handlebars');
 
-// let dataFromFile = fs.readFileSync('./package.json',{encoding : 'utf-8'});
-// //let dataFromFile = fs.readFileSync('./package.json','utf-8'};
-// //console.log(dataFromFile);
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
+app.use(express.static('public'));
 
-// let dataFromFileSync = fs.readFile('./package.json',{encoding : 'utf-8'}, (error,data) =>{
-//     if(error){console.log(error);}
-//     //console.log(data);
-// } );
-
-
-
-// //console.log(dataFromFileSync);
-// let dataObjectWriteFile ={
-//     a : 5, b : 6
-// };
-
-// let dataWriteFile = "Hello,I'm Khiem1";
-// //JSON.stringify(dataObjectWriteFile)
-// fs.writeFile('text.txt',JSON.stringify(dataObjectWriteFile),(err) =>{
-//     if(err) console.log(err);
-//         //console.log("Write file success");    
-    
+// app.get('/',(req,res) =>{
+//     res.render('home',{
+//         number : {a : Math.random()*2001 - 1000},
+//         htmlData:'<h2>Render HTML</h2>'
+//     });
 // });
 
-// //read object
-// fs.readFile('text.txt',{encoding : 'utf-8'}, (error,data) =>{
-//     if(error){console.log(error);}
-//     console.log(JSON.parse(data));
-// } );
+app.get('/', (req, res) => {
+    let b = [...fileController.readFileSync('./data.json')].length;
+    if (b == 0) {
+        res.render('home', {
+            htmlData: "<h2>Don't have any question</h2>"
+        });
+    } else {
+        let id = Math.floor((Math.random() * (b)) + 1);
+        res.redirect('/question/' + id);
+    }
 
+})
 
-let fs = require('./fileController');
+app.get('/ask', (req, res) => {
+    res.render('ask');
+});
+app.get('/question/yes/:id', (req, res) => {
+    let id = req.params.id;
+    let questionList = [...fileController.readFileSync('./data.json')];
+    let question = questionList[id - 1];
+    question.yes += 1;
+    fileController.writeFile('./data.json', questionList, (err) => {
+        if (err) {
+            console.log(err);
+        }
+        res.render('home', {
+            htmlData: "<h2> " + question.question + "</h2>" + "<p> Đúng : " + question.yes +
+                "<p> Sai : " + question.no
+        });
+    })
+});
 
-//console.log(fs);
-//console.log(fs.readFile("text.txt"));
-//fs.writeFile("text.txt","ahii",a);
+app.get('/question/no/:id', (req, res) => {
+    let id = req.params.id;
+    let questionList = [...fileController.readFileSync('./data.json')];
+    let question = questionList[id - 1];
+    question.no += 1;
+    fileController.writeFile('./data.json', questionList, (err) => {
+        if (err) {
+            console.log(err);
+        }
+        res.render('home', {
+            htmlData: "<h2> " + question.question + "</h2>" + "<p> Đúng : " + question.yes +
+                "<p> Sai : " + question.no
+        });
+    })
+});
 
-// function a(x){
-//     console.log(x);
-// }
+function getdata(x) {
 
-fs.readFile('text.txt',(fileData)=>{
-    console.log(fileData); 
+}
+app.post('/ask', (req, res) => {
+    try {
+        let data = [...fileController.readFileSync('./data.json')];
+        let id = data.length + 1;
+        let newQuestion = ({
+            id: id,
+            question: req.body.question,
+            yes: 0,
+            no: 0
+        });
+        data.push(newQuestion);
+        fileController.writeFile('./data.json', data, (err) => {
+            if (err) {
+                console.log(err);
+            }
+            res.redirect('/question/' + id);
+        })
+    } catch (ex) {
+        console.log(ex);
+    }
+});
+
+app.get('/question/:id', (req, res) => {
+    let id = req.params.id;
+    let questionList = [...fileController.readFileSync('./data.json')];
+    let question = questionList[id - 1];
+    res.render('question', {
+        question: question.question,
+        id: question.id
+
+    });
+})
+
+// app.get('/',(req,res)=>{
+//     res.sendFile(path.resolve(__dirname , './public/myself.html'));
+// });
+app.get('/frontendpractice', (req, res) => {
+    res.sendFile(path.resolve(__dirname, './public/css/style.css'));
+});
+
+app.get('/flexbox', (req, res) => {
+    res.sendFile(path.resolve(__dirname, './public/flexbox.html'));
+});
+
+app.listen(6969, (err) => {
+    if (err) {
+        console.log(err);
+    }
+    console.log("App is start at port 6969");
 })

@@ -1,8 +1,15 @@
 <h1>{{question}}</h1>
-<button onclick="location.href = '/question/yes/{{id}}'">
-    Yes
-</button>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3 push-md-3">
+            <button class="btn btn-primary" onclick="location.href = '/question/yes/{{id}}'">
+                Yes
+            </button>
 
-<button onclick="location.href = '/question/no/{{id}}'">
-    No
-</button>
+            <button class="btn btn-danger ml-3" onclick="location.href = '/question/no/{{id}}'">
+                No
+            </button>
+        </div>
+    </div>
+
+</div>

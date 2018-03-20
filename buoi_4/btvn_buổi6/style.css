@@ -1,0 +1,69 @@
+#container{
+    height: 60px;
+    line-height: 60px;
+}
+.fa-search:before {
+    position: absolute;
+    top: 8px;
+    left: 220px;
+}
+.form-inline{
+    position: relative;
+    display:  inline;
+}
+.form-control.mr-sm-2{
+    height: 36px;
+}
+.col-md-6.image img{
+    width: 180px;
+    height: 31px;
+    margin-bottom: 10px;
+}
+.col-md-6.image{
+    text-align: center;
+}
+.col-md-6.image div{
+    color: #00a0c6;
+    font-weight: 100;
+    font-size: 30px;
+    display: inline;
+}
+.col-md-3.left input{
+    display: inline;
+    width: 79%;
+    height: 36px;
+    border-radius: 0px;
+}
+.bg-gray{
+    background: #dfdfdf;
+    padding-top: 20px;
+}
+.avatar{
+    display: inline;
+}
+.avatar img{
+    border-radius: 50%;
+    margin: 0px 10px 10px 0px;
+}
+.card-body h5{
+    display: inline;
+    position:  relative;
+}
+.card-columns{
+   column-count: 4;
+}
+.card-body div {
+    display:  inline;
+    position:  relative;
+}
+
+.card-body div p {
+   
+    position: absolute;
+    font-size:  16px;
+    top: 25px;
+    left: 11px;
+}
+.card-text{
+    margin-top: 10px;
+}

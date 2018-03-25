@@ -1,15 +1,29 @@
-<h1>{{question}}</h1>
-<div class="container">
-    <div class="row">
-        <div class="col-md-3 push-md-3">
-            <button class="btn btn-primary" onclick="location.href = '/question/yes/{{id}}'">
-                Yes
-            </button>
+<h1 style="text-align : center">{{question}}</h1>
 
-            <button class="btn btn-danger ml-3" onclick="location.href = '/question/no/{{id}}'">
-                No
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-3">
+            <button class="btn btn-primary" onclick="location.href = '/question/yes/{{id}}'">
+                Sai/Không/Trái
+            </button>
+            </div>
+       
+        <div class="col-md-3">
+        <button class="btn btn-danger ml-3" onclick="location.href = '/question/no/{{id}}'">
+                Đúng/Có/Phải
             </button>
         </div>
+            
+        
+    </div>
+    <div class="row text-center mt-5" style="justify-content:center;">
+         <button class="btn btn-outline-secondary" style="margin-right : 10px" onclick="location.href = '/question/info/{{id}}'">
+                Kết quả vote
+            </button>
+            <button class="btn btn-outline-secondary" onclick="location.href = '/'">
+                Xem câu hỏi khác
+            </button>
     </div>
 
 </div>

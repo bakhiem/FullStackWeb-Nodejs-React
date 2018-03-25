@@ -1,2 +1,20 @@
 
 {{{htmlData}}}
+{{#if question}}
+<div class="text-question">
+   <h1>{{question}}</h1> 
+</div>
+<span>{{totalVote}} vote</span>
+<div class="progress" style="height: 40px;">
+  <div class="progress-bar bg-info" style="width:{{percentYes}}%">
+     Like {{percentYes}}%
+  </div>
+  <div class="progress-bar bg-danger" style="width:{{percentNo}}%">
+  Dislike {{percentNo}}%
+  </div>
+  </div>
+  <div class="text-center mt-4">
+    <button type="button" class="btn btn-success" onclick="location.href = '/'">Câu hỏi khác</button>
+  </div>
+{{/if}}
+

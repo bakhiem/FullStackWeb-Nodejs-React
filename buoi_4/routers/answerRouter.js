@@ -1,47 +1,47 @@
 const express = require('express');
 const Router = express.Router();
-const fileController = require('../fileController');
-
+const fileController = require('../Controller/fileController');
+const questionController = require('../Controller/questionController');
 
 Router.get('/yes/:id', (req, res) => {
     let id = req.params.id;
-    let questionList = [...fileController.readFileSync('./data.json')];
-    let question = questionList[id - 1];
-    question.yes += 1;
-    fileController.writeFile('./data.json', questionList, (err) => {
-        if (err) {
-            console.log(err);
-        }
-        res.render('home', {
-            htmlData: "<h2> " + question.question + "</h2>" + "<p> Đúng : " + question.yes +
-                "<p> Sai : " + question.no
-        });
+    questionController.updateAnswer(true,id,(err)=>{
+        if(err) console.log(err);
+        res.redirect('/question/info/' + id);
+        
     })
 });
 
 Router.get('/no/:id', (req, res) => {
     let id = req.params.id;
-    let questionList = [...fileController.readFileSync('./data.json')];
-    let question = questionList[id - 1];
-    question.no += 1;
-    fileController.writeFile('./data.json', questionList, (err) => {
-        if (err) {
-            console.log(err);
-        }
-        res.render('home', {
-            htmlData: "<h2> " + question.question + "</h2>" + "<p> Đúng : " + question.yes +
-                "<p> Sai : " + question.no
-        });
+    questionController.updateAnswer(false,id,(err)=>{
+        if(err) console.log(err);
+        res.redirect('/question/info/' + id);
+        
     })
 });
 
+
 Router.get('/:id', (req, res) => {
     let id = req.params.id;
-    let questionList = [...fileController.readFileSync('./data.json')];
-    let question = questionList[id - 1];
-    res.render('question', {
-        question: question.question,
-        id: question.id
+    questionController.getQuestionByID(id,(doc)=>{
+        res.render('question', {
+            do : 'active',
+            question: doc.questionContent,
+            id: doc.id
+        });
+    });
+   
+})
+Router.get('/info/:id', (req, res) => {
+    let id = req.params.id;
+    questionController.getQuestionByID(id,(doc)=>{
+        res.render('home', {
+            question : doc.questionContent,
+            totalVote :  doc.yes +  doc.no,
+            percentYes : ((doc.yes*100)/(doc.yes +  doc.no)).toFixed(2),
+            percentNo : ((doc.no*100)/(doc.yes +  doc.no)).toFixed(2)
+        });
     });
 })
 

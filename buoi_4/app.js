@@ -3,10 +3,16 @@ const express = require('express');
 const path = require('path');
 const handlebar = require('express-handlebars');
 const bodyParser = require('body-parser');
-const fileController = require('./fileController');
+const fileController = require('./Controller/fileController');
 const homeRouter = require('./routers/homeRouter');
 const answerRouter = require('./routers/answerRouter');
 const askRouter = require('./routers/askRouter');
+const mongoose = require('mongoose');
+
+mongoose.connect('mongodb://localhost/ahihidb',(err) =>{
+    if(err) console.log(err);
+    console.log("Database connect success!"); 
+});
 
 let app = express();
 app.engine('handlebars', handlebar({

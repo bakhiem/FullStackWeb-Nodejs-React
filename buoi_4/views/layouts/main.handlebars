@@ -8,11 +8,7 @@
     <link rel="stylesheet" href="/libs/css/bootstrap.min.css">
     <script src="/libs/js/jquery-3.3.1.min.js"></script>
     <script src="/libs/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css" integrity="sha384-v2Tw72dyUXeU3y4aM2Y0tBJQkGfplr39mxZqlTBDUZAb9BGoC40+rdFCG0m10lXk"
-        crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/fontawesome.css" integrity="sha384-q3jl8XQu1OpdLgGFvNRnPdj5VIlCvgsDQTQB6owSOHWlAurxul7f+JpUOVdAiJ5P"
-        crossorigin="anonymous"> {{!--
-    <link rel="stylesheet" href="/style.css"> --}}
+    
    
     <title>Ahihi App</title>
 </head>
@@ -28,19 +24,18 @@
 
             <div class="collapse navbar-collapse" id="navbarColor01">
                 <ul class="navbar-nav mr-auto">
-
                     <li class="nav-item">
-                        <a class="nav-link" href="/ask">Add Question</a>
+                        <a class="nav-link {{ask}}" href="/ask">Add Question</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/">Do Question</a>
+                        <a class="nav-link {{do}}" href="/">Do Question</a>
                     </li>
 
                 </ul>
             </div>
         </nav>
  
-<div class="container"> {{{body}}}</div>
+<div class="container" style="text-align : center"> {{{body}}}</div>
        
 
     <script src="/js/main.js"></script>

@@ -1,32 +1,17 @@
 
 const express = require('express');
 const Router = express.Router();
-const fileController = require('../fileController');
+const questionController = require('../Controller/questionController');
 
 Router.get('/', (req, res) => {
-    res.render('ask');
+    res.render('ask',{
+        ask : 'active'
+    });
 });
 
 Router.post('/', (req, res) => {
-    try {
-        let data = [...fileController.readFileSync('./data.json')];
-        let id = data.length + 1;
-        let newQuestion = ({
-            id: id,
-            question: req.body.question,
-            yes: 0,
-            no: 0
+        questionController.create(req.body.question,(data)=>{
+            res.redirect('/question/' + data._id)
         });
-        data.push(newQuestion);
-        fileController.writeFile('./data.json', data, (err) => {
-            if (err) {
-                console.log(err);
-            }
-            res.redirect('/question/' + id);
-        })
-    } catch (ex) {
-        console.log(ex);
-    }
 });
-
 module.exports = Router;

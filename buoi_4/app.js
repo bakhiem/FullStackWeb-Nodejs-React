@@ -15,6 +15,12 @@ mongoose.connect('mongodb://localhost/ahihidb',(err) =>{
 });
 
 let app = express();
+app.get('/testajax',(req,res)=>{
+    console.log("done");
+    res.send("ahihi");
+   
+    
+})
 app.engine('handlebars', handlebar({
     defaultLayout: 'main'
 }));

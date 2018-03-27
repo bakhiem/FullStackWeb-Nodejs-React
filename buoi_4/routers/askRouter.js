@@ -10,8 +10,9 @@ Router.get('/', (req, res) => {
 });
 
 Router.post('/', (req, res) => {
-        questionController.create(req.body.question,(data)=>{
-            res.redirect('/question/' + data._id)
+        questionController.create(req.body.question,(err,data)=>{
+            if(err) console.log(err);
+            else res.redirect('/question/' + data._id)
         });
 });
 module.exports = Router;

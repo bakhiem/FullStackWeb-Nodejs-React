@@ -1,29 +1,61 @@
-<h1 style="text-align : center">{{question}}</h1>
+<h1 style="text-align : center" id="question">{{question}}</h1>
 
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-3">
-            <button class="btn btn-primary" onclick="location.href = '/question/yes/{{id}}'">
+            <button class="btn btn-primary" id="btn-wrong" data-id="{{id}}">
                 Sai/Không/Trái
             </button>
-            </div>
-       
+        </div>
+
         <div class="col-md-3">
-        <button class="btn btn-danger ml-3" onclick="location.href = '/question/no/{{id}}'">
+            <button class="btn btn-danger ml-3" id="btn-right" data-id="{{id}}">
                 Đúng/Có/Phải
             </button>
         </div>
-            
-        
+
+
     </div>
     <div class="row text-center mt-5" style="justify-content:center;">
-         <button class="btn btn-outline-secondary" style="margin-right : 10px" onclick="location.href = '/question/info/{{id}}'">
-                Kết quả vote
-            </button>
-            <button class="btn btn-outline-secondary" onclick="location.href = '/'">
-                Xem câu hỏi khác
-            </button>
+        <button class="btn btn-outline-secondary" style="margin-right : 10px" onclick="location.href = '/question/info/{{id}}'">
+            Kết quả vote
+        </button>
+        <button class="btn btn-outline-secondary" onclick="useAjax()">
+            Xem câu hỏi khác
+        </button>
     </div>
 
 </div>
+{{!-- location.href = '/' --}}
+<script>
+        var btnr = document.getElementById('btn-right');
+        var btnw = document.getElementById('btn-wrong');
+        var question = null;
+        $("#btn-wrong").click(function () {
+            
+            if (question === null) {location.href = '/question/no/' + btnw.dataset.id }
+            else {
+                location.href = '/question/no/' + question._id
+            }
+        })
+        $("#btn-right").click(function () {
+            if (question === null) { location.href = '/question/yes/' + btnr.dataset.id }
+            else {
+                location.href = '/question/yes/' + question._id
+            }
+        })
+        function useAjax() {
+            $.ajax({
+                url: '/',
+                method: "post",
+                success: function (response) {
+                    check = 1;
+                    $("#question").html("" + response.question.questionContent);
+                    question = response.question;
+                }
+            })
+        }
+    
+
+</script>

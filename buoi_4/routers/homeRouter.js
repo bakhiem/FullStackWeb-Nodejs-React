@@ -4,18 +4,37 @@ const Router = express.Router();
 const questionController = require('../Controller/questionController');
 
 Router.get('/', (req, res) => {
-    questionController.getAllQuestion((doc)=>{
+    questionController.getAllQuestion((doc) => {
         let randomNumber = Math.floor((Math.random() * (doc.length)));
-        
-        if(doc.length == 0){
+
+        if (doc.length == 0) {
             res.render('home', {
                 htmlData: "<h2>Don't have any question</h2>"
             });
-        }
-        else{
-            
+        } else {
             let question = doc[randomNumber];
-            res.redirect('/question/' + question._id);
+            
+                res.redirect('/question/' + question._id);
+         
+
+
+
+        }
+    })
+})
+Router.post('/', (req, res) => {
+    questionController.getAllQuestion((doc) => {
+        let randomNumber = Math.floor((Math.random() * (doc.length)));
+
+        if (doc.length == 0) {
+            res.render('home', {
+                htmlData: "<h2>Don't have any question</h2>"
+            });
+        } else {
+            let question = doc[randomNumber];
+                res.json({
+                    question
+                })
         }
     })
 })

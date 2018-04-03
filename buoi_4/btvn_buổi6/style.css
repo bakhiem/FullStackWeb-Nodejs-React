@@ -42,6 +42,7 @@
     display: inline;
 }
 .avatar img{
+    width: 50px;
     border-radius: 50%;
     margin: 0px 10px 10px 0px;
 }
@@ -56,7 +57,10 @@
     display:  inline;
     position:  relative;
 }
-
+#modal-id{
+    width: 460px;
+    max-height: 550px;
+}
 .card-body div p {
    
     position: absolute;
@@ -66,4 +70,7 @@
 }
 .card-text{
     margin-top: 10px;
+}
+span.float-right i {
+    margin-left: 15px;
 }

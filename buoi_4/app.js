@@ -45,7 +45,7 @@ app.use('/question',answerRouter);
 //     res.sendFile(path.resolve(__dirname , './public/myself.html'));
 // });
 app.get('/frontendpractice', (req, res) => {
-    res.sendFile(path.resolve(__dirname, './public/css/style.css'));
+    res.sendFile(path.resolve(__dirname, './public/myself.html'));
 });
 
 app.get('/flexbox', (req, res) => {

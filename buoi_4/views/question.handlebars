@@ -4,14 +4,19 @@
     <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-3">
-            <button class="btn btn-primary" id="btn-wrong" data-id="{{id}}">
-                Sai/Không/Trái
+            <button class="btn btn-primary" >
+                <a style="color : white;text-decoration:none"  id="btn-wrong" href="/question/yes/{{id}}">
+                    Sai/Không/Trái
+                </a>
             </button>
         </div>
 
         <div class="col-md-3">
-            <button class="btn btn-danger ml-3" id="btn-right" data-id="{{id}}">
-                Đúng/Có/Phải
+            <button class="btn btn-danger ml-3">
+                <a style="color : white;text-decoration:none" id="btn-right" href="/question/no/{{id}}">
+                    Đúng/Có/Phải
+                </a>
+
             </button>
         </div>
 
@@ -21,20 +26,15 @@
         <button class="btn btn-outline-secondary" style="margin-right : 10px" onclick="location.href = '/question/info/{{id}}'">
             Kết quả vote
         </button>
-        <button class="btn btn-outline-secondary" onclick="useAjax()">
+        <button class="btn btn-outline-secondary" id="otherQuestion">
             Xem câu hỏi khác
         </button>
     </div>
 
 </div>
 {{!-- location.href = '/' --}}
-<script>
-        var btnr = document.getElementById('btn-right');
-        var btnw = document.getElementById('btn-wrong');
-        var question = null;
-        $("#btn-wrong").click(function () {
-            
-            if (question === null) {location.href = '/question/no/' + btnw.dataset.id }
+   {{!-- $("#btn-wrong").click(function () {
+            if (question === null) { location.href = '/question/no/' + btnw.dataset.id }
             else {
                 location.href = '/question/no/' + question._id
             }
@@ -44,18 +44,28 @@
             else {
                 location.href = '/question/yes/' + question._id
             }
-        })
-        function useAjax() {
+        }) --}}
+<script>
+    $(document).ready(function () {
+        var btnr = document.getElementById('btn-right');
+        var btnw = document.getElementById('btn-wrong');
+        var question = null;
+        $("#otherQuestion").click(function () {
             $.ajax({
                 url: '/',
                 method: "post",
+                data: {
+                    name: "ahihihihi"
+                },
                 success: function (response) {
-                    check = 1;
                     $("#question").html("" + response.question.questionContent);
                     question = response.question;
+                    $("#btn-wrong").attr("href", "/question/no/" + response.question._id)
+                    $("#btn-right").attr("href", "/question/yes/" + response.question._id)
                 }
             })
-        }
-    
+        })
 
+
+    });
 </script>

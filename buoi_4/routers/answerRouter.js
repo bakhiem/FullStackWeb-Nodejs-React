@@ -3,22 +3,16 @@ const Router = express.Router();
 const fileController = require('../Controller/fileController');
 const questionController = require('../Controller/questionController');
 
-Router.get('/yes/:id', (req, res) => {
+Router.get('/yes/:id',async (req, res) => {
     let id = req.params.id;
-    questionController.updateAnswer(true, id, (err) => {
-        if (err) console.log(err);
-        res.redirect('/question/info/' + id);
-
-    })
+    const QuestionUpdated = await questionController.updateAnswer(true, id)
+   res.redirect('/question/info/' + id);
 });
 
-Router.get('/no/:id', (req, res) => {
+Router.get('/no/:id',async (req, res) => {
     let id = req.params.id;
-    questionController.updateAnswer(false, id, (err) => {
-        if (err) console.log(err);
+    const QuestionUpdated = await questionController.updateAnswer(false, id)
         res.redirect('/question/info/' + id);
-
-    })
 });
 
 

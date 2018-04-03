@@ -13,12 +13,7 @@ Router.get('/', (req, res) => {
             });
         } else {
             let question = doc[randomNumber];
-            
-                res.redirect('/question/' + question._id);
-         
-
-
-
+            res.redirect('/question/' + question._id);
         }
     })
 })
@@ -31,10 +26,12 @@ Router.post('/', (req, res) => {
                 htmlData: "<h2>Don't have any question</h2>"
             });
         } else {
+            console.log(req.body.name);
             let question = doc[randomNumber];
-                res.json({
-                    question
-                })
+                // res.json({
+                //     question
+                // })
+                res.send({question})
         }
     })
 })

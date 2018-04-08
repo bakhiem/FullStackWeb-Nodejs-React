@@ -1,2 +1,0 @@
-
-setTimeout(3)

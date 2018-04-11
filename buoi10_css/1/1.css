@@ -1,0 +1,40 @@
+body,html{
+    margin: 0;
+    padding: 0;
+    cursor: url('./happy.png'),auto;
+}
+.content p{
+    margin: 0;
+    padding: 10px;
+}
+.ads {
+    background:  #DAE8FC;
+    text-align:  center;
+    flex: 0 0 200px;
+    height:  700px;
+}
+
+.container {
+    display:  flex;
+}
+
+.menu {
+    flex: 0 0 200px;
+   
+    
+    background: #d5e8d4;
+    height:  800px;
+    text-align:  center;
+}
+
+.content {
+    
+}
+
+.content-top {
+    BACKGROUND: #b3b3b3;
+}
+
+.content-bot {
+    background: #66ffff;
+}

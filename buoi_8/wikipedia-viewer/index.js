@@ -4,7 +4,6 @@ $(document).ready(() => {
         event.preventDefault();
     })
     listenToFormSubmitEvent()
-
 })
 /**
  * myDebounce
@@ -14,7 +13,6 @@ const debounceCustom = (search,time) =>{
     myDebounce =  setTimeout(() => {
         search()
     }, time);
-
 }
 function myStopDebounce() {
     clearTimeout(myDebounce);
@@ -25,7 +23,6 @@ function myStopDebounce() {
 var myThrottle = 1;
 var myState = 1;
 const throttleCustom = (search,time) =>{
-   
     if(myThrottle == 1){
         search();
         myThrottle = 0;
@@ -34,9 +31,6 @@ const throttleCustom = (search,time) =>{
             search();
         }, time);
     }
-    
-    
-
 }
 
 const listenToFormSubmitEvent = () => {

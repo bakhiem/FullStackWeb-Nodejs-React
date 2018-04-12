@@ -5,10 +5,10 @@ $(document).ready(() => {
         length++;
         box = `<tr class="round">
             <th scope="row">${length}</th>
-            <td><input type="text" data-user='${length}' data-round='1'/></td>
-            <td><input type="text" data-user='${length}' data-round='2'/></td>
-            <td><input type="text" data-user='${length}' data-round='3'/></td>
-            <td><input type="text" data-user='${length}' data-round='4'/></td> 
+            <td class="text-center"><input type="text" data-user='${length}' data-round='1'/></td>
+            <td class="text-center"><input type="text" data-user='${length}' data-round='2'/></td>
+            <td class="text-center"><input type="text" data-user='${length}' data-round='3'/></td>
+            <td class="text-center"><input type="text" data-user='${length}' data-round='4'/></td> 
         </tr>`;
         $('.add').append(box);
     });

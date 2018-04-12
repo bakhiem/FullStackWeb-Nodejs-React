@@ -10,8 +10,6 @@ const gameSchema = new Schema({
                     score:  {type : Number, default :0}
                 }]
             }]
-           
-        
         }
 },{
     timestamps : true

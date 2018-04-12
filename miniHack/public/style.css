@@ -12,3 +12,10 @@ input.form-control {
     font-size: 16px;
     font-family: sans-serif;
 }
+input[type="text"] {
+    width: 122px;
+    border-radius:  10px;
+}
+th.text-center {
+    width: 240px;
+}

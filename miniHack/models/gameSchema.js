@@ -6,7 +6,6 @@ const gameSchema = new Schema({
         Player:[{           
                 name: {type : String, require :true},
                 round:[{
-                    number: {type : Number, default :0},
                     score:  {type : Number, default :0}
                 }]
             }]

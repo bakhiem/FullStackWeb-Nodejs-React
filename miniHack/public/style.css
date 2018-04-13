@@ -19,3 +19,6 @@ input[type="text"] {
 th.text-center {
     width: 240px;
 }
+th {
+    width: 184px;
+}

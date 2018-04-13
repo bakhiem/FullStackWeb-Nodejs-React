@@ -28,16 +28,39 @@ app.post('/game',(req,res)=>{
     }
     gameController.create(game,(err,data)=>{
         if(err) console.log(err);
-        console.log(data);
-    })
-    res.render('user',{
-        p1 : req.body.p1,
-        p2 : req.body.p2,
-        p3 : req.body.p3,
-        p4 : req.body.p4
+        res.redirect('/game/' + data._id);
     })
 
 })
+app.get('/game/:id',(req,res)=>{
+    gameController.findId(req.params.id,(err,data)=>{
+        if(err) console.log(err);
+        res.render('user',{
+            p1 : data.newGame.Player[0].name,
+            p2 : data.newGame.Player[1].name,
+            p3 : data.newGame.Player[2].name,
+            p4 : data.newGame.Player[3].name,
+            id: req.params.id,
+            info : JSON.stringify(data.newGame)
+        })
+    })
+})
+
+app.post('/addRound',(req,res)=>{
+    console.log('addround Game');
+    gameController.addRound(req.body.id,(err)=>{
+        console.log(err);
+    })
+})
+
+app.post('/updateGame',(req,res)=>{
+    console.log('update Game');
+    gameController.updateGame(req.body.id,req.body.player,req.body.round,req.body.score,(err)=>{
+        if(err) console.log(err);
+        console.log("Update sucesss");
+    })
+})
+
 app.engine('handlebars', handlebar({
     defaultLayout: 'main'
 }));

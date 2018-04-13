@@ -3,13 +3,14 @@ const Schema = mongoose.Schema;
 
 const gameSchema = new Schema({
     newGame : {
-        Player:[{           
-                name: {type : String, require :true},
-                round:[{
-                    score:  {type : Number, default :0}
-                }]
-            }]
-        }
+        Player:[{    
+            name: {type : String, require :true},
+            round:[
+                {score:  {type : Number, require: true}}
+            ]
+        }],
+        
+    }
 },{
     timestamps : true
 });

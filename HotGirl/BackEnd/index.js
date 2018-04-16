@@ -3,10 +3,13 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
 const app = express();
-
-app.use(bodyParser.json({
-    urlEncode: true
+app.use(bodyParser.urlencoded({
+    extended: false
 }));
+const imageRoute = require("./modules/api/images/route");
+const userRoute = require("./modules/api/users/route");
+app.use('/api/images',imageRoute);
+app.use('/api/users',userRoute);
 
 app.get("/",(req,res)=>{
     res.send("OK");

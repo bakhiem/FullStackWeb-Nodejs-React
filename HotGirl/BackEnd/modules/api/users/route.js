@@ -34,7 +34,7 @@ router.post("/", (req, res) => {
 
 
 
-router.put('/name/:id', (req, res) => {
+router.put('/:id/name', (req, res) => {
     userController.updateUserName(req.params.id,req.body)
         .then(images => res.send(images))
         .catch(err => {
@@ -43,7 +43,7 @@ router.put('/name/:id', (req, res) => {
         });
 });
 
-router.put('/avatar/:id', (req, res) => {
+router.put('/:id/avatar', (req, res) => {
     userController.updateUserName(req.params.id,req.body)
         .then(images => res.send(images))
         .catch(err => {
@@ -51,7 +51,7 @@ router.put('/avatar/:id', (req, res) => {
             res.status(500).send(err);
         });
 });
-router.put('/password/:id', (req, res) => {
+router.put('/:id/password', (req, res) => {
     userController.updateUserName(req.params.id,req.body)
         .then(images => res.send(images))
         .catch(err => {
@@ -60,7 +60,7 @@ router.put('/password/:id', (req, res) => {
         });
 });
 
-router.put('/email/:id', (req, res) => {
+router.put('/:id/email', (req, res) => {
     userController.updateUserEmail(req.params.id,req.body)
         .then(images => res.send(images))
         .catch(err => {

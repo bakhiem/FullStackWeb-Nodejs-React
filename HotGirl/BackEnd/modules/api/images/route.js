@@ -21,7 +21,7 @@ router.get('/:id', (req, res) => {
         });
 });
 
-router.post('/:imageId/comments', (req, res) => {
+router.post('/:imageId/comment', (req, res) => {
     imageController.addComment(req.params.imageId, req.body)
         .then(id => res.send(id))
         .catch(err => {
@@ -30,14 +30,7 @@ router.post('/:imageId/comments', (req, res) => {
         });
 });
 
-router.post("/", (req, res) => {
-    imageController.createImage(req.body)
-        .then(result => res.send(result))
-        .catch(err => {
-            console.error(err);
-            res.status(500).send(err);
-        });
-})
+
 router.post("/", (req, res) => {
     imageController.createImage(req.body)
         .then(result => res.send(result))

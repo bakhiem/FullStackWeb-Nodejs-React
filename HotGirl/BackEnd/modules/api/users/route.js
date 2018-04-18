@@ -44,7 +44,7 @@ router.put('/:id/name', (req, res) => {
 });
 
 router.put('/:id/avatar', (req, res) => {
-    userController.updateUserName(req.params.id,req.body)
+    userController.updateUserAvatar(req.params.id,req.body)
         .then(images => res.send(images))
         .catch(err => {
             console.error(err);
@@ -52,7 +52,7 @@ router.put('/:id/avatar', (req, res) => {
         });
 });
 router.put('/:id/password', (req, res) => {
-    userController.updateUserName(req.params.id,req.body)
+    userController.updateUserPassword(req.params.id,req.body)
         .then(images => res.send(images))
         .catch(err => {
             console.error(err);

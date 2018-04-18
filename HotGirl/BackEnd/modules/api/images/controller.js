@@ -119,7 +119,7 @@ const likeImage = (imageId) =>
             .update({
                 _id: imageId
             }, {
-                    c:{like : 1}
+                $inc:{like : 1}
             })
             .then(data => resolve({
                 id: data._id

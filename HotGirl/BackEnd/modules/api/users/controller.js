@@ -3,12 +3,14 @@ const userModel = require("./model");
 const createUser = ({
     avatar,
     username,
-    password
+    password,
+    email
 }) => new Promise((resolve, reject) => {
     userModel.create({
         avatar,
         username,
-        password
+        password,
+        email
         })
         .then(data => resolve({
             id: data._id

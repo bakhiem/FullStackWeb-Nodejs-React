@@ -83,3 +83,4 @@ URI: /api/users/
 
 
 ##Authentication/Authorization
+Auth

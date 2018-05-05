@@ -1,0 +1,38 @@
+.title hr{
+    margin-top: -9px;
+    border: 1px solid #ded9d9;
+}
+tr.sum-score {
+    background: #BF1363;
+    color: white;
+    height: 40px;
+    line-height: 40px;
+}
+.text-center input{
+    text-align : center;
+}
+input.form-control {
+border: 1px solid #BF1363;
+}
+button.btn.btn-danger {
+    padding: 10px 40px;
+}
+.btn-danger{
+background: #BF1363;
+font-size: 16px;
+font-family: sans-serif;
+}
+input[type="text"] {
+    width: 122px;
+    border: 1px solid #bbb5b5;
+    border-radius:  10px;
+}
+th.text-center {
+width: 240px;
+}
+th {
+width: 184px;
+}
+tr.round th{
+    font-weight: 400;
+}

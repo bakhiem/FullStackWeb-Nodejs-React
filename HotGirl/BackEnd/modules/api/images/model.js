@@ -3,7 +3,9 @@ const Schema = mongoose.Schema;
 
 const commentModel = new Schema({
     createdBy: {
-        type: String,required:true
+        type: Schema.Types.ObjectId,
+        ref:"users",
+        required:true
     },
     content :{
         type :String,required:true
@@ -26,7 +28,8 @@ const imageModel = new Schema({
         default: ''
     },
     createdBy: {
-        type: String,
+        type: Schema.Types.ObjectId,
+        ref:"users",
         required: true
     },
     view: {

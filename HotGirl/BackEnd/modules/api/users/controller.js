@@ -7,10 +7,10 @@ const createUser = ({
     email
 }) => new Promise((resolve, reject) => {
     userModel.create({
-        avatar,
-        username,
-        password,
-        email
+            avatar,
+            username,
+            password,
+            email
         })
         .then(data => resolve({
             id: data._id
@@ -44,7 +44,9 @@ const getUser = id => new Promise((resolve, reject) => {
         .catch(err => reject(err))
 })
 
-const updateUserName = (id,{username}) => new Promise((resolve, reject) => {
+const updateUserName = (id, {
+    username
+}) => new Promise((resolve, reject) => {
     userModel.update({
             _id: id
         }, {
@@ -56,7 +58,9 @@ const updateUserName = (id,{username}) => new Promise((resolve, reject) => {
         .catch(err => reject(err))
 });
 
-const updateUserAvatar = (id,{avatar}) => new Promise((resolve, reject) => {
+const updateUserAvatar = (id, {
+    avatar
+}) => new Promise((resolve, reject) => {
     userModel.update({
             _id: id
         }, {
@@ -68,7 +72,9 @@ const updateUserAvatar = (id,{avatar}) => new Promise((resolve, reject) => {
         .catch(err => reject(err))
 });
 
-const updateUserPassword = (id,{password}) => new Promise((resolve, reject) => {
+const updateUserPassword = (id, {
+    password
+}) => new Promise((resolve, reject) => {
     userModel.update({
             _id: id
         }, {
@@ -80,7 +86,9 @@ const updateUserPassword = (id,{password}) => new Promise((resolve, reject) => {
         .catch(err => reject(err))
 });
 
-const updateUserEmail = (id,{email}) => new Promise((resolve, reject) => {
+const updateUserEmail = (id, {
+    email
+}) => new Promise((resolve, reject) => {
     userModel.update({
             _id: id
         }, {
@@ -104,16 +112,23 @@ const deleteUser = id => new Promise((resolve, reject) => {
         .catch(err => reject(err))
 });
 
+const getUserForAuth = username =>
+    new Promise((resolve, reject) => {
+        userModel.findOne({username})
+        .select("username password _id")
+        .then(user => resolve(user))
+        .catch(err => reject(err));
+        });
 
+        module.exports = {
+            createUser,
+            deleteUser,
+            getAllUsers,
+            getUser,
+            updateUserAvatar,
+            updateUserName,
+            updateUserPassword,
+            updateUserEmail,
+            getUserForAuth
 
-module.exports = {
-    createUser,
-    deleteUser,
-    getAllUsers,
-    getUser,
-    updateUserAvatar,
-    updateUserName,
-    updateUserPassword,
-    updateUserEmail
-    
-}
+        }

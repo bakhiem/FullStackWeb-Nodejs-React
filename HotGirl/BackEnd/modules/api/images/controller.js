@@ -4,13 +4,13 @@ const createImage = ({
     imageUrl,
     title,
     description,
-    createdBy
+    id
 }) => new Promise((resolve, reject) => {
     imageModel.create({
             imageUrl,
             title,
             description,
-            createdBy
+            createdBy : id
         })
         .then(data => resolve({
             id: data._id

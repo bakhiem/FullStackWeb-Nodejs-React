@@ -8,6 +8,7 @@ const gameSchema = new Schema({
             round:[
                 {score:  {type : Number, require: true}}
             ]
+            
         }],
         
     }

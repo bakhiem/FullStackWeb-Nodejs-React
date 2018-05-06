@@ -30,7 +30,6 @@ app.post('/game',(req,res)=>{
         if(err) console.log(err);
         res.redirect('/game/' + data._id);
     })
-
 })
 app.get('/game/:id',(req,res)=>{
     gameController.findId(req.params.id,(err,data)=>{

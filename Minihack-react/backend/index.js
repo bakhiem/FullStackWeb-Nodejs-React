@@ -10,7 +10,25 @@ mongoose.connect('mongodb://localhost/newGame',(err) =>{
     if(err) console.log(err);
     console.log("Database connect success!"); 
 });
-
+app.use((req, res, next) => {
+    res.setHeader("X-Frame-Options", "ALLOWALL");
+    res.setHeader(
+      "Access-Control-Allow-Methods",
+      "POST, GET, PUT, DELETE, OPTIONS"
+    );
+  
+    if (req.headers.origin) {
+      res.setHeader("Access-Control-Allow-Origin", req.headers.origin);
+    }
+  
+    res.setHeader("Access-Control-Allow-Credentials", true);
+  
+    res.setHeader(
+      "Access-Control-Allow-Headers",
+      "Authorization, Origin, X-Requested-With, Content-Type, Accept"
+    );
+    next();
+  });
 app.use(bodyParser.urlencoded({
     extended: false
 }));

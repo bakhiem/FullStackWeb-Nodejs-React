@@ -7,8 +7,8 @@ const gameSchema = new Schema({
             round:[
                 {score:  {type : Number, require: true}}
             ],
-            sumScore:{type : Number,default:0 }
-        }],
+            
+        }]  
 },{
     timestamps : true
 });

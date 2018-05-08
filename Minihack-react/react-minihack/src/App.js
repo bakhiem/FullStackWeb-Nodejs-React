@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
+
 import './App.css';
 
 import CreateGame from "./components/CreateGame";
 import PlayGame from "./components/PlayGame";
+//import axios from 'axios';
 
 class App extends Component {
   state = {

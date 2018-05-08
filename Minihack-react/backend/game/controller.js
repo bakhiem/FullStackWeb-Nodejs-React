@@ -30,19 +30,17 @@ let findId = (id,callback) =>{
         callback(err,data);
     })
 }
-
 let addRound = (id,callback)=> {
     findId(id,(err,data)=>{
         if(err) console.log(err);
         else{
-            for(let player of data.Player){
-                player.round.push({score:0});
+            for(let OnePlayer of data.Player){
+                OnePlayer.round.push({score:0});
             }
             data.save();
         }
     })
  }
-
 let updateGame = (id,name,Round,Score,callback)=> {
    findId(id,(err,data)=>{
        if(err) console.log(err);
@@ -55,25 +53,9 @@ let updateGame = (id,name,Round,Score,callback)=> {
    })
    
 }
-
-const getSumScore = () =>
-  new Promise((resolve, reject) => {
-    gameModel
-      .find({
-        active: true
-      })
-      .select("_id sumScore")
-      .exec()
-      .then(data =>
-        resolve(data)
-      )
-      .catch(err => reject(err));
-  });
-
 module.exports = {
     create,
     findId,
     updateGame,
-    getSumScore,
     addRound
 }

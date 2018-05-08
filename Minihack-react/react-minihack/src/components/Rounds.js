@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+
 class Rounds extends Component {
   render() {
     const inputs = Array.from({ length: this.props.rounds.length }).map((ahihi, index) => (

@@ -25,10 +25,10 @@ router.post("/", (req, res) => {
 
 router.post('/addRound',(req,res)=>{
     console.log('addround Game');
-    // gameController.addRound(req.body.id,(err)=>{
-    //     console.log(err);
-    // })
-    console.log(req.body.id);
+    gameController.addRound(req.body.id,(err)=>{
+        console.log(err);
+    })
+    
 })
 
 router.post('/create', (req, res) => {

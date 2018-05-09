@@ -3,10 +3,10 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const gameRouter = require('./game/router');
-
+const config = require('./config-production.json');
 let app = express();
 
-mongoose.connect('mongodb://localhost/newGame',(err) =>{
+mongoose.connect(config.mongoPath,(err) =>{
     if(err) console.log(err);
     console.log("Database connect success!"); 
 });

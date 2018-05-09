@@ -5,21 +5,22 @@ import AddRound from './AddRound';
 import axios from '../axios';
 
 let setRounds = function(data){
-    let mround = [0,0,0,0];
     let rounds =[];
     let length = data.Player[0].round.length;
     for(let i = 0 ; i < length;i ++){
+        let mround = [0,0,0,0];
         for(let j = 0; j < 4 ; j++){    
             mround[j] = Number(data.Player[j].round[i].score);
         }
         rounds.push(mround);
     }
+    console.log(rounds);
     return rounds;
 }
 class PlayGame extends Component {
     state = {
         id : 0,
-        rounds: [[0,0,0,0]],
+        rounds: [],
         totals:[0,0,0,0],
         sumOfScore: 0,
         playerName: ['','','','']
@@ -30,6 +31,7 @@ class PlayGame extends Component {
             .then(data => {
                 let info = data.data.info;
                 let round = setRounds(data.data.info);
+                
                 if (info) {
                     this.setState({
                         id : this.props.match.params.id,
@@ -59,33 +61,27 @@ class PlayGame extends Component {
             return;
         }
         else{
-            var r = this.state.rounds;
-            console.log(r[0][1]);
-            r[0][1] = 1;
-            console.log(r);
-            console.log(r[0][1]);
-            console.log(r[1][1]);
-            console.log(r[2][1]);
-             // console.log(index + ' ' +NoPlayer + ' ' + value );
-            // let totals = this.state.totals;
-            // let sum=0,sumOfScore=0;
-            // for(let i=0;i<round.length;i++){
-            //     sum = sum + parseInt( round[i][NoPlayer],10);
-            // }
-            // totals[NoPlayer] = sum;
-            // for(let i=0;i<4;i++){
-            //     sumOfScore+= parseInt(totals[i],10);
-            // }
-            // this.setState({rounds : round});
-            // this.setState({totals});
-            // this.setState({sumOfScore})
-            // console.log('ajii');
-            // axios.post('/api/game', {
-            //     id: this.state.id,
-            //     name: NoPlayer,
-            //     Round : index,
-            //     Score : value
-            //   })
+            var round = this.state.rounds;
+            round[index][NoPlayer] = value;
+            console.log(index + ' ' +NoPlayer + ' ' + value );
+            let totals = this.state.totals;
+            let sum=0,sumOfScore=0;
+            for(let i=0;i<round.length;i++){
+                sum = sum + parseInt( round[i][NoPlayer],10);
+            }
+            totals[NoPlayer] = sum;
+            for(let i=0;i<4;i++){
+                sumOfScore+= parseInt(totals[i],10);
+            }
+            this.setState({rounds : round});
+            this.setState({totals});
+            this.setState({sumOfScore});
+            axios.post('/api/game', {
+                id: this.state.id,
+                name: NoPlayer,
+                Round : index,
+                Score : value
+              })
         }
 }
 render() {

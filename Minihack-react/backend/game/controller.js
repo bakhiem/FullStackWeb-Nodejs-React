@@ -45,11 +45,10 @@ let updateGame = (id,name,Round,Score,callback)=> {
    findId(id,(err,data)=>{
        if(err) console.log(err);
        else{
-            data.Player[2].round[1].score = Score;
+            data.Player[name].round[Round].score = Score;
             data.save();
         }
    })
-   
 }
 module.exports = {
     create,

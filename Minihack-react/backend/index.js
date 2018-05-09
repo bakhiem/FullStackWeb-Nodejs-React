@@ -32,12 +32,9 @@ app.use((req, res, next) => {
 app.use(bodyParser.urlencoded({
     extended: false
 }));
+app.use(bodyParser.json({ extended: false }));
 app.use('/api/game', gameRouter);
-
 app.use(express.static('public'));
-
-
-
 app.listen(6969, (err) => {
     if (err) {
         console.log(err);

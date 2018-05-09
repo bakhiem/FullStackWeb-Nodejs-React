@@ -17,12 +17,21 @@ router.get('/:id',(req,res)=>{
     })
 })
 router.post("/", (req, res) => {
-    gameController.updateGame(req.body, (err, data) => {
+    console.log(req.body.id + ' ' +req.body.name + " " +req.body.Round + ' ' + req.body.Score );
+    gameController.updateGame(req.body.id,req.body.name,req.body.Round,req.body.Score, (err, data) => {
         if (err) console.log(err);
-        console.log(data._id);
+        console.log('done');
     })
 });
-
+router.post("/create", (req, res) => {
+    gameController.create(req.body.players, (err, data) => {
+        if (err) console.log(err);
+        res.writeHead(302, {
+            Location: 'http://localhost:3000/game/' + data._id
+        });
+        res.end();
+    })
+});
 router.post('/addRound',(req,res)=>{
     console.log('addround Game');
     gameController.addRound(req.body.id,(err)=>{

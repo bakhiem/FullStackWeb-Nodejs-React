@@ -3,10 +3,10 @@ const gameModel = require("./model");
 let create = (game, callback) => {
     let Game = {
             Player:[          
-                {name: game.p1},
-                {name: game.p2},
-                {name: game.p3},
-                {name: game.p4}
+                {name: game[0]},
+                {name: game[1]},
+                {name: game[2]},
+                {name: game[3]}
             ]
     };
     try {
@@ -45,9 +45,7 @@ let updateGame = (id,name,Round,Score,callback)=> {
    findId(id,(err,data)=>{
        if(err) console.log(err);
        else{
-           console.log('data'  + data);
-            data.Player[name-1].round[Round-1].score = Score;
-            data.Player[name-1].sumScore += Score;
+            data.Player[2].round[1].score = Score;
             data.save();
         }
    })

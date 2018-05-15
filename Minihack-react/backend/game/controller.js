@@ -41,7 +41,7 @@ let addRound = (id,callback)=> {
         }
     })
  }
-let updateGame = (id,name,Round,Score,callback)=> {
+let updateGame = (id,name,Round,Score)=> {
    findId(id,(err,data)=>{
        if(err) console.log(err);
        else{

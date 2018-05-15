@@ -7,6 +7,7 @@ import axios from '../axios';
 let setRounds = function(data){
     let rounds =[];
     let length = data.Player[0].round.length;
+    
     for(let i = 0 ; i < length;i ++){
         let mround = [0,0,0,0];
         for(let j = 0; j < 4 ; j++){    
@@ -16,6 +17,15 @@ let setRounds = function(data){
     }
     console.log(rounds);
     return rounds;
+}
+let setSumscore = function(rounds){
+    let sumScore = [0,0,0,0];
+    for(let i = 0; i < 4;i ++){
+        for(let j = 0 ; j < rounds.length; j ++){
+            sumScore[i] += rounds[j][i];
+        }
+    }
+    return sumScore
 }
 class PlayGame extends Component {
     state = {
@@ -31,11 +41,12 @@ class PlayGame extends Component {
             .then(data => {
                 let info = data.data.info;
                 let round = setRounds(data.data.info);
-                
+                let sumScore = setSumscore(round);
                 if (info) {
                     this.setState({
                         id : this.props.match.params.id,
                         rounds : round,
+                        totals : sumScore,
                         playerName: [info.Player[0].name, info.Player[1].name, info.Player[2].name,info.Player[3].name]
                     })
                 }
@@ -48,13 +59,7 @@ class PlayGame extends Component {
         this.setState({rounds});
         axios.post( '/api/game/addRound', {
             id: this.state.id
-          })
-          .then(function (response) {
-            console.log(response);
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
+        })
     }
     _onChangeScore = async (index,NoPlayer,value)=>{
         if(isNaN(value)){
@@ -81,7 +86,7 @@ class PlayGame extends Component {
                 name: NoPlayer,
                 Round : index,
                 Score : value
-              })
+            })
         }
 }
 render() {

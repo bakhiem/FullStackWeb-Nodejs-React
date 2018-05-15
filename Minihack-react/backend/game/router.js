@@ -17,11 +17,7 @@ router.get('/:id',(req,res)=>{
     })
 })
 router.post("/", (req, res) => {
-    console.log(req.body.id + ' ' +req.body.name + " " +req.body.Round + ' ' + req.body.Score );
-    gameController.updateGame(req.body.id,req.body.name,req.body.Round,req.body.Score, (err, data) => {
-        if (err) console.log(err);
-        console.log('done');
-    })
+    gameController.updateGame(req.body.id,req.body.name,req.body.Round,req.body.Score)
 });
 router.post("/create", (req, res) => {
     gameController.create(req.body.players, (err, data) => {

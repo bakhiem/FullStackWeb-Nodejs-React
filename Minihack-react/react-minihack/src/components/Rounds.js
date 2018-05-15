@@ -6,10 +6,10 @@ class Rounds extends Component {
     const inputs = Array.from({ length: this.props.rounds.length }).map((ahihi, index) => (
         <tr className="round" key={index}>
             <th scope="row">{`Round ${index+1}`}</th>
-            <td className="text-center" onChange = {e => this.props.onChangeScore(index,0,parseInt(e.target.value,10))}><input type="text"/></td>
-            <td className="text-center" onChange = {e => this.props.onChangeScore(index,1,parseInt(e.target.value,10))}><input type="text"/></td>
-            <td className="text-center" onChange = {e => this.props.onChangeScore(index,2,parseInt(e.target.value,10))}><input type="text"/></td>
-            <td className="text-center" onChange = {e => this.props.onChangeScore(index,3,parseInt(e.target.value,10))}><input type="text"/></td> 
+            <td className="text-center" onChange = {e => this.props.onChangeScore(index,0,parseInt(e.target.value,10))}><input type="text" defaultValue={this.props.rounds[index][0] == 0 ? '' : this.props.rounds[index][0]}/></td>
+            <td className="text-center" onChange = {e => this.props.onChangeScore(index,1,parseInt(e.target.value,10))}><input type="text" defaultValue={this.props.rounds[index][1] == 0 ? '' : this.props.rounds[index][1]}/></td>
+            <td className="text-center" onChange = {e => this.props.onChangeScore(index,2,parseInt(e.target.value,10))}><input type="text" defaultValue={this.props.rounds[index][2] == 0 ? '' : this.props.rounds[index][2]}/></td>
+            <td className="text-center" onChange = {e => this.props.onChangeScore(index,3,parseInt(e.target.value,10))}><input type="text" defaultValue={this.props.rounds[index][3] == 0 ? '' : this.props.rounds[index][3]}/></td> 
         </tr>
     ));
     return (
